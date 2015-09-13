@@ -41,30 +41,38 @@ brother->male
 brother:john,mark
 ```
 
-To query the program, start the line with a question mark. Here is a basic example:    
+To query the program, start the line with a question mark. Here is a basic example:  
+
+```code
 sally->person    
 john->person    
 sister->female    
 sister:sally,john    
 ?sally->female    
-?john->female    
-
+?john->female
+```
+This code produces the output:
+```code
 > Item sally has state female    
 > Item john doesn't have state female    
+```
 
 It is also possible to define a state as a combination of multiple states with the following pattern:    
 {state_a} -> {state_b}^{state_c}    
 This pattern means "state A is true when state B and state C are true"
 
 Here is an example:    
-
+```code
 boy->male^child    
 father->male    
 son->male    
 john->child    
 father:dave,john    
 ?john->boy    
-?dave->boy    
-
+?dave->boy  
+```
+Which produces the output:
+```code
 > item john has state boy    
 > item dave doesn't have state boy    
+```
