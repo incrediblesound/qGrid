@@ -1,38 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "structures.h"
 
 #define GREEN   "\x1b[32m"
 #define YELLOW  "\x1b[33m"
 #define BLUE    "\x1b[34m"
 #define RESET   "\x1b[0m"
 
-union Data {
-	int num;
-	char *name;
-	struct Node *node;
-};
-
-struct Node {
-	struct Link *outgoing;
-	struct Link *incoming;
-	int outgoing_len;
-	int incoming_len;
-	union Data data;
-	char type;
-};
-
-struct Array {
-	struct Node *outgoing;
-	int outgoing_len;
-};
-
-struct Link {
-	struct Node *source;
-	struct Node *target;
-	char relation;
-	struct Node *custom;
-};
 
 void add_outgoing_link(struct Node *a, struct Link *l){
 	a->outgoing_len += 1;
@@ -80,18 +55,6 @@ int has_state_check(struct Node *a, struct Node *b){
 			}
 		} 
 	}
-	// if(!state_found){
-	// 	for(int j = 0; j < a->incoming_len; j++){
-	// 		if(a->incoming[j].relation != 'n'){
-	// 			int equal = compare(a->incoming[j].target, b);
-	// 			if(equal == 1){
-	// 				state_found = 1;
-	// 			} else {
-	// 				state_found = has_state_check(a->incoming[j].target, b) || state_found;
-	// 			}
-	// 		} 
-	// 	}	
-	// }
 	return state_found;
 };
 

@@ -1,3 +1,8 @@
+/*
+ * This is a library of simple maps from symbols used in the language
+ * to symbols when compiling to c
+ */
+
 exports.valueToType = {
 	'string':'s',
 	'number':'i'

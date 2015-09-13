@@ -1,6 +1,6 @@
-var _ = require('./helpers.js');
-var Entity = require('./entity.js').Entity;
-var Set = require('./set.js').Set;
+var _ = require('./javascript/helpers.js');
+var Entity = require('./javascript/entity.js').Entity;
+var Set = require('./javascript/set.js').Set;
 var compiler = require('./compiler.js');
 
 var relations = new Set(['->','-!'])
@@ -32,5 +32,5 @@ module.exports = function(lines){
 		})
 		stack.push(entity);
 	})
-	compiler(stack);
+	return stack;
 }

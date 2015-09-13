@@ -1,3 +1,7 @@
+/*
+ * Entity is the core data structure used to interpret the language
+ */
+
 var Entity = function(){
 	this.compound = false;
 	this.current = 'source';
@@ -6,9 +10,9 @@ var Entity = function(){
 };
 
 Entity.prototype.addValue = function(value){
-	if(this.current === 'source' && this.compound === true){
-		this.current = 'source';
-	} 
+	// if(this.current === 'source' && this.compound === true){
+	// 	this.current = 'source';
+	// } 
 	this[this.current].push({
 		type: typeof value,
 		content: value

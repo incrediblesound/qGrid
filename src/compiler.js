@@ -1,8 +1,8 @@
-var _ = require('./helpers.js');
-var variables = require('./variables.js')();
-var Set = require('./set.js').Set;
+var _ = require('./javascript/helpers.js');
+var variables = require('./javascript/variables.js')();
+var Set = require('./javascript/set.js').Set;
 var fs = require('fs');
-var lib = require('./lib.js');
+var lib = require('./javascript/lib.js');
 var exec = require('child_process').exec;
 
 LIBRARY = {};
@@ -15,7 +15,7 @@ var addQ = function(string){
 	queries += string;
 }
 
-module.exports = function(stack){
+module.exports = function(stack, name){
 	_.forEach(stack, function(entity, idx){
 		if(entity.query === true){
 			createQuery(entity, idx);
@@ -23,11 +23,11 @@ module.exports = function(stack){
 			createEntities(entity);
 		}
 	})
-	var output = '#include \"core.h\"\n\nint main(){\n'+result+';\n'+queries+'\n};\n';
-	fs.writeFileSync('output.c', output);
-	exec('gcc output.c -o out', function(err){
+	var output = '#include \"core.c\"\n\nint main(){\n'+result+';\n'+queries+'\n};\n';
+	fs.writeFileSync('./src/output.c', output);
+	exec('gcc ./src/output.c -o ' + name, function(err){
 			if(err) console.log(err);
-			// exec('rm -rf output.c');
+			exec('r`m -rf ./src/output.c');
 			return;
 	});
 }
@@ -127,7 +127,6 @@ function addRelation(options){
 		add('add_incoming_link(&'+customName+', &'+relationName+');\n');
 		LIBRARY[options.relation] = LIBRARY[options.relation] || {};
 		LIBRARY[options.relation].link = customName;
-	console.log(options.source, options.target, options.relation, relationName);
 	}
 	LIBRARY[options.source] = LIBRARY[options.source] || {};
 	LIBRARY[options.source][options.target] = LIBRARY[options.source][options.target] || {};

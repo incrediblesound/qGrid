@@ -1,3 +1,5 @@
+* test basic relation queries *
+
 james->person
 mary->happy
 happy-!sad

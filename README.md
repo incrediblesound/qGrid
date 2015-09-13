@@ -1,6 +1,22 @@
-WangLang
-========
+QuestionGrid
+============
 A simple logical programming language that compiles to C.
+
+How to Use
+----------
+
+Note: qGrid requires the use of node.js and gcc, if you use some other c compiler you can change it in the main function of src/compiler.js.
+
+After you clone this repository you can write save a qGrid file with the .qgd extension and put it in any directory. To create an output file, run the following command from the root directory of this repository:
+
+```shell
+node qgrid path/to/my/file.qgd myprogram
+```
+In this case the c compiler will create an output file called "myprogram" that you can run like this:
+
+```shell
+./myprogram
+```
 
 Examples
 --------
@@ -9,10 +25,21 @@ The basic pattern is like this:
 
 There are two basic relations:    
 -> is a transitive equals    
--! means does not equal   
+-! means does not equal
+
+```code
+animal->thing
+chair->thing
+animal->living
+```
 
 You can use a state as a relation like this:    
-{state-relation}:{origin-state},{target-state}    
+{state-relation}:{origin-state},{target-state}
+
+```code
+brother->male
+brother:john,mark
+```
 
 To query the program, start the line with a question mark. Here is a basic example:    
 sally->person    

@@ -1,3 +1,7 @@
+/*
+ * A small library of common helper functions
+ */
+
 exports.isNumber = isNumber; 
 exports.forEach = forEach;
 exports.processValue = processValue;
